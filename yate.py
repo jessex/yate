@@ -65,13 +65,9 @@ def mutate(dna):
     return "".join(dna_list)
     
 def crossover(parent_a, parent_b):
-    str_cha = ""
-    str_chb = ""
+    str_cha = str_chb = ""
     str_a = parent_a.dna
     str_b = parent_b.dna
-    
-    if len(str_a) != len(str_b):
-        print str_a + " *** " + str_b
     
     start = random.randint(0, len(str_a)-1)
     str_cha = str_a[0:start] + str_b[start:len(str_a)]
