@@ -1,4 +1,4 @@
-import random, math
+import random, math, time
 from sys import argv
 
 ascii_start = 32 #every character between SPACE ...
@@ -120,6 +120,9 @@ if __name__ == "__main__":
     initialize(population, solution)
     completed = False
     
+    print "Target evolution: %s\n" % solution
+    beginning = time.time()
+    
     for i in range(max_generations):
         fitness_func(population, solution)
         fitness_sort(population)
@@ -139,15 +142,15 @@ if __name__ == "__main__":
             eli.append(child_a)
             eli.append(child_b)
         population = eli
-        
+
+    end = time.time()        
             
     if completed == False:
         print "Could not finish within %s generations!" % (max_generations)
         fitness_sort(population)
         print "Closest approximation: %s" % (population[0].dna)
 
-
-
+    print "Run time: %f sec" % (end-beginning)
         
 
 
