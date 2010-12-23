@@ -1,8 +1,8 @@
 import random, math, time
-from sys import argv
+from sys import argv, exit
 
 ascii_start = 32 #every character between SPACE ...
-ascii_end = 126 #... and ~ 
+ascii_end = 126 #... and ~
 
 pop_size = 500
 max_generations = 10000
@@ -115,7 +115,21 @@ def two_parents(population):
     
 
 if __name__ == "__main__":
-    solution = argv[1] #take in the text to evolve from command line
+    if len(argv) < 2:
+        exit("Please provide text to evolve")
+
+    if argv[1] == "-f":
+        try:
+            f = open(argv[2], "r")
+            solution = f.read().rstrip("\r\n")
+        except IndexError:
+            exit("Please enter a file name directly after the '-f' flag")
+        except IOError:
+            exit("Please enter a valid file name")
+    elif argv[1] == "\"-f\"":
+        solution = "-f"
+    else:
+        solution = argv[1] #take in the text to evolve from command line
     population = []
     initialize(population, solution)
     completed = False
@@ -143,7 +157,7 @@ if __name__ == "__main__":
             eli.append(child_b)
         population = eli
 
-    end = time.time()        
+    end = time.time()
             
     if completed == False:
         print "Could not finish within %s generations!" % (max_generations)
@@ -151,6 +165,3 @@ if __name__ == "__main__":
         print "Closest approximation: %s" % (population[0].dna)
 
     print "Run time: %f sec" % (end-beginning)
-        
-
-
