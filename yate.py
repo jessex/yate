@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import random, math, time
 from sys import argv, exit
 
@@ -165,3 +167,5 @@ if __name__ == "__main__":
         print "Closest approximation: %s" % (population[0].dna)
 
     print "Run time: %f sec" % (end-beginning)
+    
+    
